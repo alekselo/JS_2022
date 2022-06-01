@@ -3,7 +3,7 @@
 let fullPrice;
 let allServicePrices;
 let servicePercentPrice;
-let title = prompt("Как называется Ваш проект?");
+let title = prompt("Как называется Ваш проект?", "  КальКуЛятор ВёРсТКи   ");
 
 const screens = prompt(
   "Какие типы экранов нужно разработать?",
@@ -32,7 +32,8 @@ function getServicePercentPrice() {
 
 function getTitle() {
   return (title =
-    title.trim().charAt(0).toUpperCase() + title.trim().slice(1).toLowerCase());
+    title.trim().slice(0, 1).toUpperCase() +
+    title.trim().slice(1).toLowerCase());
 }
 
 const getRollbackMessage = function () {
