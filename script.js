@@ -29,19 +29,23 @@ const asking = function () {
 };
 
 const getAllServicePrices = function () {
-  let sum = 0;
+  let sum;
+  let sum1;
+  let sum2;
   for (let i = 0; i < 2; i++) {
     if (i === 0) {
       service1 = prompt("Какой дополнительный тип услуги нужен?");
+      do {
+        sum1 = +prompt("Сколько это будет стоить?");
+      } while (!isNumber(sum1));
     } else if (i === 1) {
       service2 = prompt("Какой еще дополнительный тип услуги нужен?");
-    }
-    sum += +prompt("Сколько это будет стоить?");
-    while (!isNumber(sum)) {
-      sum = +prompt("Сколько это будет стоить?");
+      do {
+        sum2 = +prompt("Сколько это будет стоить?");
+      } while (!isNumber(sum2));
     }
   }
-  return sum;
+  return (sum = sum1 + sum2);
 };
 function getFullPrice() {
   return screenPrice + allServicePrices;
