@@ -13,8 +13,10 @@ let service2;
 const rollback = 15;
 
 const isNumber = function (num) {
-  return !isNaN(parseFloat(num)) && isFinite(num);
+  return !isNaN(parseFloat(num)) && isFinite(num) && !/\s/g.test(num);
 };
+
+//
 
 const asking = function () {
   title = prompt("Как называется Ваш проект?", "  КальКуЛятор ВёРсТКи   ");
@@ -23,7 +25,7 @@ const asking = function () {
     "Простые, Сложные, Интерактивные"
   );
   do {
-    screenPrice = +prompt("Сколько будет стоить данная работа?", "12000");
+    screenPrice = prompt("Сколько будет стоить данная работа?", "12000");
   } while (!isNumber(screenPrice));
   adaptive = confirm("Нужен ли адаптив на сайте?");
 };
@@ -39,7 +41,7 @@ const getAllServicePrices = function () {
       service2 = prompt("Какой еще дополнительный тип услуги нужен?");
     }
     do {
-      res = +prompt("Сколько это будет стоить?");
+      res = prompt("Сколько это будет стоить?");
     } while (!isNumber(res));
     sum += +res;
   }
@@ -47,7 +49,7 @@ const getAllServicePrices = function () {
 };
 
 function getFullPrice() {
-  return screenPrice + allServicePrices;
+  return +screenPrice + allServicePrices;
 }
 
 function getServicePercentPrice() {
