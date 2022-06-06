@@ -4,6 +4,10 @@ const isNumber = function (num) {
   return !isNaN(parseFloat(num)) && isFinite(num) && !/\s/g.test(num);
 };
 
+const isString = function (str) {
+  return isNaN(parseFloat(str));
+};
+
 const appData = {
   title: "",
   screens: [],
@@ -20,13 +24,13 @@ const appData = {
         "Как называется Ваш проект?",
         "  КальКуЛятор ВёРсТКи   "
       );
-    } while (isNumber(appData.title));
+    } while (!isString(appData.title));
 
     for (let i = 0; i < 2; i++) {
       let name;
       do {
         name = prompt("Какие типы экранов нужно разработать?");
-      } while (isNumber(name));
+      } while (!isString(name));
 
       let price = 0;
 
@@ -47,7 +51,7 @@ const appData = {
           (i + 1) +
           " " +
           prompt("Какой дополнительный тип услуги нужен?");
-      } while (isNumber(name));
+      } while (!isString(name));
       do {
         price = prompt("Сколько это будет стоить?");
       } while (!isNumber(price));
