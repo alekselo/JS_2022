@@ -1,7 +1,7 @@
 "use strict";
 
 const isNumber = function (num) {
-  return !isNaN(parseFloat(num)) && isFinite(num);
+  return !isNaN(parseFloat(num)) && isFinite(num) && !/\s/g.test(num);
 };
 
 const appData = {
@@ -25,7 +25,7 @@ const appData = {
       "Простые, Сложные, Интерактивные"
     ).toLocaleLowerCase();
     do {
-      appData.screenPrice = +prompt(
+      appData.screenPrice = prompt(
         "Сколько будет стоить данная работа?",
         "12000"
       );
@@ -43,14 +43,14 @@ const appData = {
         appData.service2 = prompt("Какой еще дополнительный тип услуги нужен?");
       }
       do {
-        res = +prompt("Сколько это будет стоить?");
+        res = prompt("Сколько это будет стоить?");
       } while (!isNumber(res));
       sum += +res;
     }
     return sum;
   },
   getFullPrice: function () {
-    return appData.screenPrice + appData.allServicePrices;
+    return +appData.screenPrice + appData.allServicePrices;
   },
   getServicePercentPrice: function () {
     return Math.ceil(
