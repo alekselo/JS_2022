@@ -1,5 +1,20 @@
 "use strict";
 
+const title = document.getElementsByTagName("h1")[0];
+const startBtn = document.getElementsByClassName("handler_btn")[0];
+const resetBtn = document.getElementsByClassName("handler_btn")[1];
+const screenBtn = document.querySelector(".screen-btn");
+const percentItems = document.querySelectorAll(".other-items.percent");
+const numberItems = document.querySelectorAll(".other-items.number");
+const inputRollback = document.querySelector(".rollback input[type=range]");
+const valueRollback = document.querySelector(".rollback span.range-value");
+const screenPriceInput = document.getElementsByClassName("total-input")[0];
+const screenCountInput = document.getElementsByClassName("total-input")[1];
+const servicesValueInput = document.getElementsByClassName("total-input")[2];
+const fullCountInput = document.getElementsByClassName("total-input")[3];
+const rollbackCountInput = document.getElementsByClassName("total-input")[4];
+let screenBlock = document.querySelectorAll(".screen");
+
 const isNumber = function (num) {
   return !isNaN(parseFloat(num)) && isFinite(num) && !/\s/g.test(num);
 };
