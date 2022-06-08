@@ -5,6 +5,7 @@ const book = document.querySelectorAll(".book");
 const bookTitleLink = document.querySelectorAll("a");
 const chapterSecondBook = book[0].querySelectorAll("li");
 const chapterFifthBook = book[5].querySelectorAll("li");
+const chapterSixthBook = book[2].querySelectorAll("li");
 const bookContent = document.querySelectorAll("ul");
 const newChapter = document.createElement("li");
 
@@ -19,8 +20,7 @@ bookTitleLink[4].textContent = "Книга 3. this и Прототипы Объ�
 adv.remove();
 
 newChapter.textContent = "Глава 8: За пределами ES6";
-bookContent[2].append(newChapter);
-chapter[25].after(newChapter);
+chapterSixthBook[8].append(newChapter);
 
 chapterSecondBook[10].before(chapterSecondBook[2]);
 chapterSecondBook[3].after(chapterSecondBook[6]);
