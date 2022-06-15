@@ -39,6 +39,7 @@ const appData = {
   init: function () {
     appData.addTitle();
     appData.inputRollback();
+
     startBtn.addEventListener("click", appData.check);
     screenBtn.addEventListener("click", appData.addScreenBlock);
   },
@@ -46,7 +47,7 @@ const appData = {
     document.title = title.textContent;
   },
   addScreens: function () {
-    screens = document.querySelectorAll(".screen");
+    // screens = document.querySelectorAll(".screen");
     screens.forEach(function (screen, index) {
       const select = screen.querySelector("select");
       const input = screen.querySelector("input");
@@ -113,8 +114,8 @@ const appData = {
   addScreenBlock: function () {
     const cloneScreen = screens[0].cloneNode(true);
     cloneScreen.querySelector("input").value = "";
-    screens = document.querySelectorAll(".screen");
     screens[screens.length - 1].after(cloneScreen);
+    screens = document.querySelectorAll(".screen");
   },
   addPrices: function () {
     for (let screen of appData.screens) {
@@ -151,7 +152,7 @@ const appData = {
     appData.addScreens();
     appData.addServices();
     appData.addPrices();
-    appData.logger();
+    // appData.logger();
     appData.showResult();
     console.log(appData.screens);
   },
