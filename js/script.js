@@ -112,6 +112,8 @@ const appData = {
   },
   addScreenBlock: function () {
     const cloneScreen = screens[0].cloneNode(true);
+    cloneScreen.querySelector("input").value = "";
+    screens = document.querySelectorAll(".screen");
     screens[screens.length - 1].after(cloneScreen);
   },
   addPrices: function () {
