@@ -83,6 +83,10 @@ const appData = {
     rangeInput.addEventListener("input", () => {
       rangeValue.textContent = rangeInput.value + "%";
       this.rollback = rangeInput.value;
+      this.servicePercentPrice = Math.ceil(
+        this.fullPrice - this.fullPrice * (this.rollback / 100)
+      );
+      this.showResult();
     });
   },
   addServices: function () {
@@ -181,6 +185,15 @@ const appData = {
     select.removeAttribute("disabled");
     input.removeAttribute("disabled");
   },
+  clearDataScreens: function () {
+    for (let i = 0; i < screens.length; i++) {
+      const select = screens[i].querySelector(".screen select");
+      const input = screens[i].querySelector(".screen input");
+
+      select.value = 0;
+      input.value = 0;
+    }
+  },
   deleteScreenBlock: function () {
     for (let i = 1; i < screens.length; i++) {
       screens[i].remove();
@@ -191,16 +204,16 @@ const appData = {
     rangeValue.textContent = "0 %";
   },
   resetResult: function () {
-    total.value = "";
-    totalCountOther.value = "";
-    fullTotalCount.value = "";
-    totalCountRollback.value = "";
-    totalCount.value = "";
+    total.value = 0;
+    totalCountOther.value = 0;
+    fullTotalCount.value = 0;
+    totalCountRollback.value = 0;
+    totalCount.value = 0;
   },
   resetAppData: function () {
     this.screens = [];
     this.screenPrice = 0;
-    this.countScreen = 0;
+    this.screenCount = 0;
     this.rollback = 0;
     this.fullPrice = 0;
     this.servicePercentPrice = 0;
@@ -226,9 +239,11 @@ const appData = {
     this.showBtnReset();
     this.disableCheckbox();
     this.disableScreens();
-    // console.log(this.screens);
+    console.log(totalCount.value);
+    console.log(this.screens);
   },
   reset: function () {
+    // this.clearDataScreens();
     this.deleteScreenBlock();
     this.turnOnCheckbox();
     this.turnOnScreens();
@@ -236,6 +251,8 @@ const appData = {
     this.resetRangeValue();
     this.resetResult();
     this.resetAppData();
+    console.log(totalCount.value);
+    console.log(this.screens);
   },
 };
 
