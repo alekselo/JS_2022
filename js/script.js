@@ -144,6 +144,11 @@ const appData = {
     resetBtn.style.display = "block";
     screenBtn.setAttribute("disabled", true);
   },
+  hiddenBtnReset: function () {
+    startBtn.style.display = "block";
+    resetBtn.style.display = "none";
+    screenBtn.removeAttribute("disabled");
+  },
   disableCheckbox: function () {
     for (let i = 0; i < checkboxes.length; i++) {
       if (checkboxes[i].type === "checkbox") {
@@ -169,8 +174,8 @@ const appData = {
     }
   },
   turnOnScreens: function () {
-    const select = screens.querySelector(".screen select");
-    const input = screens.querySelector(".screen input");
+    const select = document.querySelector(".screen select");
+    const input = document.querySelector(".screen input");
     select.value = "";
     input.value = "";
     select.removeAttribute("disabled");
@@ -180,6 +185,29 @@ const appData = {
     for (let i = 1; i < screens.length; i++) {
       screens[i].remove();
     }
+  },
+  resetRangeValue: function () {
+    rangeInput.value = 0;
+    rangeValue.textContent = "0 %";
+  },
+  resetResult: function () {
+    total.value = "";
+    totalCountOther.value = "";
+    fullTotalCount.value = "";
+    totalCountRollback.value = "";
+    totalCount.value = "";
+  },
+  resetAppData: function () {
+    this.screens = [];
+    this.screenPrice = 0;
+    this.countScreen = 0;
+    this.rollback = 0;
+    this.fullPrice = 0;
+    this.servicePercentPrice = 0;
+    this.servicePricesPercent = 0;
+    this.servicePricesNumber = 0;
+    this.servicesPercent = {};
+    this.servicesNumber = {};
   },
   logger: function () {
     console.log("Название проекта : " + this.title);
@@ -204,6 +232,9 @@ const appData = {
     this.deleteScreenBlock();
     this.turnOnCheckbox();
     this.turnOnScreens();
+    this.hiddenBtnReset();
+    this.resetRangeValue();
+    this.resetResult();
   },
 };
 
