@@ -235,6 +235,7 @@ const appData = {
     this.hiddenBtnReset();
     this.resetRangeValue();
     this.resetResult();
+    this.resetAppData();
   },
 };
 
