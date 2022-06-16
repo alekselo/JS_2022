@@ -13,6 +13,7 @@ const totalCount = document.getElementsByClassName("total-input")[1];
 const totalCountOther = document.getElementsByClassName("total-input")[2];
 const fullTotalCount = document.getElementsByClassName("total-input")[3];
 const totalCountRollback = document.getElementsByClassName("total-input")[4];
+const checkboxes = document.getElementsByTagName("input");
 let screens = document.querySelectorAll(".screen");
 
 const isNumber = function (num) {
@@ -40,6 +41,7 @@ const appData = {
     this.addTitle();
     this.inputRollback();
     startBtn.addEventListener("click", this.check.bind(appData));
+    resetBtn.addEventListener("click", this.reset.bind(appData));
     screenBtn.addEventListener("click", this.addScreenBlock);
   },
   addTitle: function () {
@@ -137,6 +139,48 @@ const appData = {
       this.fullPrice - this.fullPrice * (this.rollback / 100)
     );
   },
+  showBtnReset: function () {
+    startBtn.style.display = "none";
+    resetBtn.style.display = "block";
+    screenBtn.setAttribute("disabled", true);
+  },
+  disableCheckbox: function () {
+    for (let i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i].type === "checkbox") {
+        checkboxes[i].setAttribute("disabled", true);
+      }
+    }
+  },
+  turnOnCheckbox: function () {
+    for (let i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i].type === "checkbox") {
+        checkboxes[i].removeAttribute("disabled");
+        checkboxes[i].checked = false;
+      }
+    }
+  },
+  disableScreens: function () {
+    for (let i = 0; i < screens.length; i++) {
+      const select = screens[i].querySelector(".screen select");
+      const input = screens[i].querySelector(".screen input");
+
+      select.setAttribute("disabled", true);
+      input.setAttribute("disabled", true);
+    }
+  },
+  turnOnScreens: function () {
+    const select = screens.querySelector(".screen select");
+    const input = screens.querySelector(".screen input");
+    select.value = "";
+    input.value = "";
+    select.removeAttribute("disabled");
+    input.removeAttribute("disabled");
+  },
+  deleteScreenBlock: function () {
+    for (let i = 1; i < screens.length; i++) {
+      screens[i].remove();
+    }
+  },
   logger: function () {
     console.log("Название проекта : " + this.title);
     console.log("Стоимость вёрстки : " + this.screenPrice);
@@ -146,12 +190,20 @@ const appData = {
     }
   },
   start: function () {
-    appData.addScreens();
-    appData.addServices();
-    appData.addPrices();
-    // appData.logger();
-    appData.showResult();
-    // console.log(appData.screens);
+    this.addScreens();
+    this.addServices();
+    this.addPrices();
+    // this.logger();
+    this.showResult();
+    this.showBtnReset();
+    this.disableCheckbox();
+    this.disableScreens();
+    // console.log(this.screens);
+  },
+  reset: function () {
+    this.deleteScreenBlock();
+    this.turnOnCheckbox();
+    this.turnOnScreens();
   },
 };
 
