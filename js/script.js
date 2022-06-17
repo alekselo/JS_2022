@@ -54,7 +54,6 @@ const appData = {
     this.title = title.textContent;
   },
   addScreens: function () {
-    screens = document.querySelectorAll(".screen");
     screens.forEach((screen, index) => {
       const select = screen.querySelector("select");
       const input = screen.querySelector("input");
@@ -199,6 +198,7 @@ const appData = {
       input.value = 0;
       screens[i].remove();
     }
+    screens = document.querySelectorAll(".screen");
   },
   resetRangeValue: function () {
     rangeInput.value = 0;
