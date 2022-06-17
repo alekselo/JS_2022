@@ -40,8 +40,13 @@ const appData = {
   init: function () {
     this.addTitle();
     this.inputRollback();
-    startBtn.addEventListener("click", this.check.bind(appData));
-    resetBtn.addEventListener("click", this.reset.bind(appData));
+    startBtn.addEventListener("click", () => {
+      this.isError = false;
+      this.check();
+    });
+    resetBtn.addEventListener("click", () => {
+      this.reset();
+    });
     screenBtn.addEventListener("click", this.addScreenBlock);
   },
   addTitle: function () {
@@ -49,7 +54,7 @@ const appData = {
     this.title = title.textContent;
   },
   addScreens: function () {
-    // screens = document.querySelectorAll(".screen");
+    screens = document.querySelectorAll(".screen");
     screens.forEach((screen, index) => {
       const select = screen.querySelector("select");
       const input = screen.querySelector("input");
@@ -185,17 +190,13 @@ const appData = {
     select.removeAttribute("disabled");
     input.removeAttribute("disabled");
   },
-  clearDataScreens: function () {
-    for (let i = 0; i < screens.length; i++) {
+  deleteScreenBlock: function () {
+    for (let i = 1; i < screens.length; i++) {
       const select = screens[i].querySelector(".screen select");
       const input = screens[i].querySelector(".screen input");
 
       select.value = 0;
       input.value = 0;
-    }
-  },
-  deleteScreenBlock: function () {
-    for (let i = 1; i < screens.length; i++) {
       screens[i].remove();
     }
   },
@@ -243,7 +244,6 @@ const appData = {
     console.log(this.screens);
   },
   reset: function () {
-    // this.clearDataScreens();
     this.deleteScreenBlock();
     this.turnOnCheckbox();
     this.turnOnScreens();
